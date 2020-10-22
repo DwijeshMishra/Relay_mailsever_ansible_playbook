@@ -1,0 +1,9 @@
+---
+ - name: playbook
+   hosts: node2.example.com
+   tasks:
+    - name: sending mails
+      mail:
+       to: Dwijesh Mishra <dwijeshvasu515@gmail.com,sonulodha@yahoo.com>
+       subject: Ansible-report
+       body: 'System {{ ansible_hostname }} has been successfully provisioned.' 

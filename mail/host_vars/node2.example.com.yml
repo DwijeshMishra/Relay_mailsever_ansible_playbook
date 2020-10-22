@@ -1,0 +1,9 @@
+
+pkg:
+ - postfix
+ - cyrus-sasl
+ - cyrus-sasl-lib
+ - cyrus-sasl-plain  
+ 
+
+src: postfix

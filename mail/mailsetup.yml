@@ -1,0 +1,38 @@
+---
+ - name: Installing httpd
+   hosts: node2.example.com
+   tasks: 
+    - name: Installing pkg {{ pkg }}
+      yum:
+       name: "{{ pkg }}"
+       state: present  
+  
+    - name: Service Restart and Enabled
+      service:
+       name: "{{ src }}"
+       state: started
+       enabled: true
+
+
+  
+    - name: Copy the content in /etc/postfix/main.cf
+      template:
+       src: main.j2
+       dest: /etc/postfix/main.cf
+ 
+       
+    - name: Copy content password 
+      copy: 
+       content: '[smtp.gmail.com]:587  dwijeshm3@gmail.com:loistrjhsgiffutp'
+       dest: /etc/postfix/sasl_passwd
+
+    - name: Service Restart and Enabled
+      service:
+       name: "{{ src }}"
+       state: restarted
+       
+     
+    - name: Set PostFix Lookup
+      command: postmap /etc/postfix/sasl_passwd
+
+
